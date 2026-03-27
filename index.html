@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Advogado em São Paulo | Atendimento Jurídico</title>
+<meta name="description" content="Advogado em São Paulo com atuação em direito trabalhista, família e civil. Atendimento com orientação jurídica segura." />
+<meta name="keywords" content="advogado, direito trabalhista, direito de família, direito civil, São Paulo, Vale do Paraíba" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
+<style>
+  /* Reset e base */
+  * {
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Poppins', sans-serif;
+  }
+
+  body {
+    background: #f4f6f9;
+    color: #333;
+    scroll-behavior: smooth;
+  }
+
+  /* HEADER FIXO */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(11,31,58,0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 1100;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nav strong {
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+    user-select: none;
+  }
+
+  /* NAV LINKS */
+  nav div.nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+
+  nav div.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+  }
+  nav div.nav-links a:hover,
+  nav div.nav-links a:focus {
+    color: #c9a14a;
+    outline: none;
+  }
+
+  .btn {
+    background: #c9a14a;
+    padding: 12px 22px;
+    border-radius: 30px;
+    color: white;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .btn:hover,
+  .btn:focus {
+    transform: scale(1.05);
+    outline: none;
+  }
+
+  /* HAMBURGER MENU BOTÃO */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1200;
+  }
+  .hamburger div {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+    transition: 0.3s ease;
+  }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    background: linear-gradient(rgba(11,31,58,0.8), rgba(11,31,58,0.8)),
+      url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    padding-top: 100px; /* para compensar header fixo */
+  }
+  .hero img {
+    display: none; /* para SEO / acessibilidade */
+  }
+  .hero h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    animation: fadeUp 1s ease forwards;
+  }
+  .hero p {
+    margin-bottom: 20px;
+    font-weight: 300;
+    animation: fadeUp 1.5s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  main {
+    margin-top: 80px; /* para espaço do header fixo */
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 70px 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  h1, h2, h3 {
+    font-weight: 600;
+  }
+  h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+  h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  /* CARDS */
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+  .card {
+    background: white;
+    flex: 1 1 320px;
+    max-width: 400px;
+    padding: 40px 35px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    text-align: left;
+  }
+  .card:hover,
+  .card:focus-within {
+    transform: translateY(-10px);
+  }
+  .card p {
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 20px;
+    white-space: pre-line;
+  }
+  .card h2, .card h3 {
+    margin-bottom: 15px;
+  }
+
+  /* DIFERENCIAIS */
+  .diferenciais {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .badge {
+    background: #0b1f3a;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 16px;
+    user-select: none;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #0b1f3a;
+    color: white;
+    padding: 30px;
+    text-align: center;
+  }
+
+  /* WHATSAPP BOTAO FLUTUANTE */
+  .whatsapp {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #25d366;
+    color: white;
+    padding: 18px;
+    border-radius: 50%;
+    font-size: 24px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s infinite;
+    z-index: 1200;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(37,211,102,0); }
+    100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+  }
+
+
+  /* RESPONSIVO */
+  @media screen and (max-width: 900px) {
+    nav div.nav-links {
+      position: fixed;
+      top: 65px;
+      right: 0;
+      background: rgba(11,31,58,0.95);
+      height: calc(100vh - 65px);
+      width: 220px;
+      flex-direction: column;
+      padding-top: 30px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      border-left: 1px solid #c9a14a;
+      gap: 22px;
+      z-index: 1101;
+    }
+    nav div.nav-links.active {
+      transform: translateX(0);
+    }
+
+    nav div.nav-links a {
+      font-size: 1px;
+      margin: 0;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .hero h1 {
+      font-size: 28px;
+    }
+    .hero p {
+      font-size: 16px;
+    }
+    .card {
+      padding: 30px;
+    }
+    nav {
+      padding: 15px 20px;
+    }
+    header {
+      padding: 15px 20px;
+    }
+  }
+</style>
+
+<script>
+  // Menu hamburguer toggle
+  document.addEventListener("DOMContentLoaded", function() {
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector("nav div.nav-links");
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      hamburger.classList.toggle("active");
+      // animação do hamburguer
+      if (hamburger.classList.contains("active")) {
+        hamburger.children[0].style.transform = "rotate(45deg) translate(5px, 5px)";
+        hamburger.children[1].style.opacity = "0";
+        hamburger.children[2].style.transform = "rotate(-45deg) translate(5px, -5px)";
+      } else {
+        hamburger.children[0].style.transform = "none";
+        hamburger.children[1].style.opacity = "1";
+        hamburger.children[2].style.transform = "none";
+      }
+    });
+    // Fecha menu ao clicar no link (mobile)
+    document.querySelectorAll("nav div.nav-links a").forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove("active");
+        hamburger.classList.remove("active");
+        hamburger.children[0].style.transform = "none";
+        hamburger.children[1].style.opacity = "1";
+        hamburger.children[2].style.transform = "none";
+      });
+    });
+  });
+</script>
+
+<!-- JSON-LD para SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Dr. Leandro Mantovaneli",
+  "areaServed": [
+    { "@type": "Place", "name": "São Paulo" },
+    { "@type": "Place", "name": "Vale do Paraíba" }
+  ],
+  "url": "https://seusite.com.br",
+  "telephone": "+5512982750444",
+  "description": "Advogado com atuação em direito trabalhista, família e civil em São Paulo e Vale do Paraíba."
+}
+</script>
+
+</head>
+<body>
+
+<header>
+  <nav role="navigation" aria-label="Menu principal">
+    <strong>Dr. Leandro Mantovaneli</strong>
+
+    <div class="hamburger" aria-label="Abrir menu" role="button" tabindex="0">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="nav-links">
+      <a href="#" tabindex="0">Home</a>
+      <a href="#areas" tabindex="0">Áreas</a>
+      <a href="#sobre" tabindex="0">Sobre</a>
+      <a href="#contato" tabindex="0">Contato</a>
+      <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Fale com um advogado</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" aria-label="Mensagem principal do site">
+    <div>
+      <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f" alt="Advogado em escritório de advocacia" />
+      <h1>Teve seus direitos violados? Saiba como agir e recuperar o que é seu.</h1>
+      <p>Atendimento jurídico com segurança e transparência em São Paulo e Vale do Paraíba</p>
+      <a class="btn" href="https://wa.me/5512982750444?text=Olá, gostaria de falar com um advogado" target="_blank" rel="noopener" tabindex="0">Fale agora no WhatsApp</a>
+    </div>
+  </section>
+
+  <section id="areas" aria-labelledby="areas-h2">
+    <h2 id="areas-h2">Áreas de Atuação</h2>
+    <div class="cards" role="list">
+      <article class="card" role="listitem" tabindex="0" aria-label="Direito do Trabalho">
+        Direito do Trabalho
+      </article>
+      <article class="card" role="listitem" tabindex="0" aria-label="Direito de Família">
+        Direito de Família
+      </article>
+      <article class="card" role="listitem" tabindex="0" aria-label="Inventário e Sucessões">
+        Inventário e Sucessões
+      </article>
+      <article class="card" role="listitem" tabindex="0" aria-label="Direito Civil">
+        Direito Civil
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="conteudos-h2">
+    <h2 id="conteudos-h2">Conteúdos Jurídicos</h2>
+    <div class="cards" role="list">
+
+      <article class="card" role="listitem" tabindex="0" aria-label="Demissão sem justa causa">
+        <h3>Demissão sem justa causa</h3>
+        <p>
+QUAIS SÃO SEUS DIREITOS?
+
+Quando um trabalhador é demitido sem justa causa, a lei garante uma série de direitos que muitas vezes não são totalmente pagos pelo empregador.
+
+Entre os principais estão:
+• Saldo de salário
+• Aviso prévio (trabalhado ou indenizado)
+• Férias vencidas e proporcionais + 1/3
+• 13º salário proporcional
+• Saque do FGTS
+• Multa de 40% sobre o FGTS
+
+Além disso, o trabalhador pode ter direito ao seguro-desemprego.
+
+Atenção: erros no cálculo da rescisão são muito comuns. Por isso, é importante analisar o termo de rescisão antes de assinar.
+Em caso de dúvida, busque orientação jurídica.
+        </p>
+        <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Fale com um advogado</a>
+      </article>
+
+      <article class="card" role="listitem" tabindex="0" aria-label="Demissão por justa causa">
+        <h3>Demissão por justa causa</h3>
+        <p>
+É POSSÍVEL REVER?
+
+A demissão por justa causa ocorre quando o empregador entende que houve uma falta grave do trabalhador.
+
+No entanto, muitas dessas demissões são aplicadas de forma indevida.
+
+Alguns exemplos:
+• Falta de provas
+• Penalidade desproporcional
+• Ausência de advertências anteriores
+
+Se a justa causa for revertida, o trabalhador passa a ter direito a todas as verbas de uma demissão comum.
+
+Cada caso deve ser analisado individualmente.
+        </p>
+        <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Fale com um advogado</a>
+      </article>
+
+      <article class="card" role="listitem" tabindex="0" aria-label="Inventário">
+        <h3>Inventário</h3>
+        <p>
+COMO FUNCIONA O INVENTÁRIO?
+
+O inventário é o procedimento utilizado para formalizar a divisão dos bens de uma pessoa falecida.
+
+Ele pode ser feito de duas formas:
+
+Extrajudicial (cartório)
+• Quando há acordo entre os herdeiros
+• Mais rápido e menos burocrático
+
+Judicial
+• Quando há conflito ou herdeiros menores
+
+O prazo para iniciar o inventário é de 60 dias após o falecimento.
+
+O atraso pode gerar multa sobre o imposto (ITCMD).
+        </p>
+        <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Fale com um advogado</a>
+      </article>
+
+      <article class="card" role="listitem" tabindex="0" aria-label="Dano Moral">
+        <h3>Dano Moral</h3>
+        <p>
+POSSO PROCESSAR POR DANO MORAL?
+
+O dano moral ocorre quando há violação à dignidade, honra ou integridade da pessoa.
+
+Situações comuns:
+• Nome negativado indevidamente
+• Cobrança abusiva
+• Cancelamento de serviços essenciais
+• Problemas com bancos ou empresas
+
+Nem todo aborrecimento gera indenização — é necessário avaliar a gravidade do caso.
+        </p>
+        <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Fale com um advogado</a>
+      </article>
+
+      <article class="card" role="listitem" tabindex="0" aria-label="União Estável">
+        <h3>União Estável</h3>
+        <p>
+COMO FUNCIONA A PARTILHA DE BENS?
+
+Na união estável, salvo contrato em contrário, aplica-se o regime da comunhão parcial de bens.
+
+Isso significa que:
+• Tudo que foi adquirido durante a convivência deve ser dividido
+• Bens anteriores não entram na partilha
+
+Muitas pessoas acreditam que não têm direitos por não serem casadas — o que não é verdade.
+A comprovação da união pode ser feita por diversos meios (documentos, testemunhas, etc...).
+        </p>
+        <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Fale com um advogado</a>
+      </article>
+
+      <article class="card" role="listitem" tabindex="0" aria-label="Cobrança Indevida">
+        <h3>Cobrança Indevida</h3>
+        <p>
+O QUE FAZER?
+
+Se você foi cobrado indevidamente, saiba que tem direitos garantidos pelo Código de Defesa do Consumidor.
+
+Você pode:
+• Exigir a devolução do valor
+• Receber em dobro (em alguns casos)
+• Pleitear indenização por dano moral
+
+Guarde sempre comprovantes e registros da cobrança.
+        </p>
+        <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Fale com um advogado</a>
+      </article>
+
+    </div>
+  </section>
+
+  <section aria-labelledby="diferenciais-h2">
+    <h2 id="diferenciais-h2">Diferenciais</h2>
+    <div class="diferenciais">
+      <div class="badge" tabindex="0">Atendimento humanizado</div>
+      <div class="badge" tabindex="0">Transparência</div>
+      <div class="badge" tabindex="0">Agilidade</div>
+      <div class="badge" tabindex="0">Experiência jurídica</div>
+    </div>
+  </section>
+
+  <section id="sobre" aria-labelledby="sobre-h2">
+    <h2 id="sobre-h2">Sobre</h2>
+    <p tabindex="0">Advogado atuante em São Paulo e Vale do Paraíba, com experiência em direito trabalhista, civil e familiar.</p>
+  </section>
+
+  <section id="contato" aria-labelledby="contato-h2">
+    <h2 id="contato-h2">Fale com um advogado</h2>
+    <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Falar com um Advogado</a>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 - Todos os direitos reservados</p>
+  <p>São Paulo e Vale do Paraíba</p>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" aria-label="WhatsApp - fale com um advogado" target="_blank" rel="noopener">💬</a>
+
+</body>
+</html>
