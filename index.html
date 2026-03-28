@@ -159,6 +159,90 @@
     margin-bottom: 10px;
   }
 
+  /* TABS - ÁREAS DE ATUAÇÃO */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .tab-button {
+    background: #0b1f3a;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+  }
+  .tab-button:hover,
+  .tab-button:focus {
+    background: #c9a14a;
+    color: #0b1f3a;
+    outline: none;
+  }
+  .tab-button.active {
+    background: #c9a14a;
+    color: #0b1f3a;
+    cursor: default;
+  }
+
+  /* CARROSSEL CONTAINER */
+  .carousel-container {
+    max-width: 440px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .carousel-cards {
+    position: relative;
+    overflow: hidden;
+    min-height: 380px;
+  }
+  .carousel-cards > article {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    user-select: none;
+  }
+  .carousel-cards > article.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    pointer-events: auto;
+    user-select: auto;
+  }
+
+  /* Botões do carrossel */
+  .carousel-controls {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  .carousel-controls button {
+    background: #0b1f3a;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  .carousel-controls button:hover,
+  .carousel-controls button:focus {
+    background: #c9a14a;
+    outline: none;
+  }
+
   /* CARDS */
   .cards {
     display: flex;
@@ -166,28 +250,26 @@
     justify-content: center;
     gap: 30px;
   }
+
   .card {
     background: white;
-    flex: 1 1 320px;
-    max-width: 400px;
     padding: 40px 35px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
     text-align: left;
   }
-  .card:hover,
-  .card:focus-within {
-    transform: translateY(-10px);
+  .card h3 {
+    margin-bottom: 15px;
   }
   .card p {
     line-height: 1.6;
     font-weight: 300;
-    margin-bottom: 20px;
     white-space: pre-line;
+    margin-bottom: 20px;
   }
-  .card h2, .card h3 {
-    margin-bottom: 15px;
+  .card a.btn {
+    margin-top: 10px;
+    display: inline-block;
   }
 
   /* DIFERENCIAIS */
@@ -261,7 +343,7 @@
     }
 
     nav div.nav-links a {
-      font-size: 1px;
+      font-size: 10px;
       margin: 0;
     }
 
@@ -297,7 +379,6 @@
     hamburger.addEventListener("click", () => {
       navLinks.classList.toggle("active");
       hamburger.classList.toggle("active");
-      // animação do hamburguer
       if (hamburger.classList.contains("active")) {
         hamburger.children[0].style.transform = "rotate(45deg) translate(5px, 5px)";
         hamburger.children[1].style.opacity = "0";
@@ -308,7 +389,6 @@
         hamburger.children[2].style.transform = "none";
       }
     });
-    // Fecha menu ao clicar no link (mobile)
     document.querySelectorAll("nav div.nav-links a").forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove("active");
@@ -318,6 +398,514 @@
         hamburger.children[2].style.transform = "none";
       });
     });
+
+    // Áreas de Atuação abas e carrossel
+
+    // Dados dos cards organizados por categoria
+    const areasData = {
+      'direito-trabalhista': [
+        {
+          title: "Demissão sem justa causa",
+          text: `QUAIS SÃO SEUS DIREITOS?
+
+Quando um trabalhador é demitido sem justa causa, a lei garante uma série de direitos que muitas vezes não são totalmente pagos pelo empregador.
+
+Entre os principais estão:
+• Saldo de salário
+• Aviso prévio (trabalhado ou indenizado)
+• Férias vencidas e proporcionais + 1/3
+• 13º salário proporcional
+• Saque do FGTS
+• Multa de 40% sobre o FGTS
+
+Além disso, o trabalhador pode ter direito ao seguro-desemprego.
+
+Atenção: erros no cálculo da rescisão são muito comuns. Por isso, é importante analisar o termo de rescisão antes de assinar.
+Em caso de dúvida, busque orientação jurídica.
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.`,
+        },
+        {
+          title: "Demissão por justa causa",
+          text: `É POSSÍVEL REVER?
+
+A demissão por justa causa ocorre quando o empregador entende que houve uma falta grave do trabalhador.
+
+No entanto, muitas dessas demissões são aplicadas de forma indevida.
+
+Alguns exemplos:
+• Falta de provas
+• Penalidade desproporcional
+• Ausência de advertências anteriores
+
+Se a justa causa for revertida, o trabalhador passa a ter direito a todas as verbas de uma demissão comum.
+
+Cada caso deve ser analisado individualmente.
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.`,
+        },
+        {
+          title:"Rescisão indireta ",
+          text:`COMO FUNCIONA NA PRÁTICA?
+          A rescisão indireta está prevista no art. 483 da CLT e ocorre quando o empregador comete falta grave.
+ Importante: o empregado não deve simplesmente 'parar de trabalhar'. O ideal é consultar um para ingressar com ação judicial pedindo o reconhecimento.
+Situações que geram direito:
+Falta de pagamento ou atrasos reiterados
+Não recolhimento de FGTS
+Assédio moral
+Exigência de atividades além do contrato
+Condições degradantes
+O que você recebe:
+Mesmos direitos da demissão sem justa causa.
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.`
+        },
+        {
+          title:"Acúmulo de função ",
+          text:`QUANDO GERA DIREITO?
+          Nem todo acúmulo gera direito automático.
+ Só há direito quando:
+A nova função é diferente da contratada
+Há aumento de responsabilidade
+Não há previsão contratual
+ Pode gerar adicional salarial ou indenização.
+ 
+ Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+`
+        },
+        {
+          title:"Banco de horas: ",
+          text:`CUIDADOS ESSENCIAIS
+          Precisa de acordo formal
+Limite de 6 meses para pagar (acordo individual)
+Se não compensado no prazo → vira hora extra e deve ser acrescido de 50%
+Irregularidades podem gerar pagamento retroativo.
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+`
+        },
+        {
+          title:"ACIDENTE DE TRABALHO",
+          text:`DIREITOS DO TRABALHADOR
+Afastamento pelo INSS
+Estabilidade de 12 meses
+Indenização (em alguns casos)
+
+Quando há indenização?
+Quando há culpa da empresa.
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.`
+        },
+        {
+          title:"ESTABILIDADE GESTANTE",
+          text:`COMO FUNCIONA?
+A gestante tem estabilidade:
+Desde a confirmação da gravidez
+Até 5 meses após o parto
+Mesmo em contrato temporário?
+Em muitos casos, sim (conforme entendimento dos tribunais)
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+`
+        },
+      ],
+      
+      
+      'direito-familia': [
+        
+        {
+          title:"Divórcio: ",
+          text:`ETAPAS PRINCIPAIS
+          1. Definição do tipo:
+Consensual → rápido
+Litigioso → judicial
+2. Pontos que podem ser discutidos:
+Guarda dos filhos 
+Pensão alimentícia 
+Partilha de bens
+👉 O divórcio pode ser feito mesmo sem resolver a partilha de bens ou pensão e guarda (divórcio direto).
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+
+          `
+        
+        },
+        {
+          title:"Regimes de bens",
+          text:`EXPLICAÇÃO PRÁTICA
+          ✔️ Comunhão parcial (padrão)
+Divide apenas os bens adquiridos durante o casamento ou união
+Bens anteriores não entram
+Heranças não entram
+Dívidas contraídas na constância do casamento ou união
+ É o mais comum no Brasil
+
+✔️ Comunhão universal
+Todos os bens entram (antes e depois)
+Dívidas também podem ser compartilhadas
+Heranças também entram
+
+✔️ Separação total de bens
+Cada um mantém seu patrimônio
+Não há divisão automática
+Cada um fica com o que esta em seu nome
+👉 Muito usado para proteção patrimonial
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+
+          `
+        
+        },
+        {
+          title:"União estável",
+          text:`PONTOS-CHAVE
+          Para ser reconhecida judicialmente deve seguir o seguinte;
+Não precisa de tempo mínimo
+Requisito central é a convivência pública, continua e com intenção de construir família
+Pode ser comprovada por provas (fotos, contas, testemunhas)
+👉 Sem contrato → aplica-se comunhão parcial de bens
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+          `
+        
+        },
+        {
+          title:"Partilha de bens e dívidas na união estavél",
+          text:`COMO FUNCIONA?
+          Depende do regime se houver contrato de união estável estipulando o regime de bens.
+Se não houver segue a regra geral comunhão parcial de bens:
+Bens adquiridos durante a união devem ser → divididos.
+Dívidas em benefício da família → podem ser divididas.
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+          `
+        
+        },
+        {
+          title:"pensão alimentícia",
+          text:`EXISTE PERCENTUAL FIXO?
+          ❌ Não
+👉 Regra:
+Necessidade de quem recebe
+Possibilidade de quem paga
+
+🔹 Média prática
+Entre 20% e 30% da renda
+📌 Pode incluir:
+Escola
+Plano de saúde
+Alimentação
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+
+          `
+        
+        },
+        {
+          title:"Guarda Compartilhada",
+          text:`COMO FUNCIONA?
+          Ambos os pais participam das decisões.
+👉 Não significa tempo igual, mas responsabilidade conjunta.
+QUANDO NÃO É APLICADA?
+Situações de risco
+Violência
+Falta de convivência mínima
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+
+          `
+        
+        },
+        
+      ],
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      'direito-sucessoes': [
+        {
+          title: "Inventário",
+          text: `O QUE ACONTECE SE NÃO FIZER?
+          Bens ficam bloqueados
+Não é possível vender imóveis
+Pode gerar multa
+
+QUAIS SÃO OS TIPOS DE INVENTÁRIO?
+
+Extrajudicial (cartório) → rápido (precisa todos estarem de acordo e não pode haver menor como parte ou pessoa curatelada)
+Judicial → quando há conflito ou menor ou pessoa curatelada
+
+QUAL PRAZO LEGAL PARA INICIAR O INVENTÁRIO APÓS O FALECIMENTO?
+👉 60 dias após o falecimento
+Após isto é gerado uma multa  que varia conforme o estado.
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+
+          `
+          
+        },
+        
+      ],
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      'direito-civil': [
+        
+          {
+          title:"Compra e venda",
+          text:`QUAIS CUIDADOS ESSENCIAIS
+          Verificar documentação
+Formalizar contrato
+Definir prazos e multas
+Consulta em cartórios para não haver pendencia sobre o bem
+👉 Evita litígios futuros
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+
+          `
+        
+        },
+        {
+          title:"Usucapião",
+          text:`QUANDO É POSSÍVEL?
+          A usucapião é possível quando há os seguintes requisitos;
+Posse contínua
+Sem oposição
+Uso como se fosse dono
+👉 Pode ser judicial ou extrajudicial
+Em regra o tempo de uso é 15 anos, porem conforme o caso pode ser reduzido se houver moradia para uso próprio, benfeitorias no imóvel.
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+
+          `
+        
+        },
+        {
+          title:"Revisão de Financiamento Bancário",
+          text:`QUANDO É POSSÍVEL REVISAR?
+          Juros abusivos
+Cobranças indevidas
+Falta de transparência
+👉 Muito comum em financiamentos de veículos
+
+O QUE PODE SER PEDIDO?
+Redução da parcela
+Devolução de valores pagos
+Revisão do contrato
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+
+          `
+        }
+        ,
+        {
+          title:"Indenização por Danos Morais",
+          text:`QUANDO CABE?
+          Nome negativado indevidamente não precisa comprovar
+Ofensa à honra e imagem
+Problemas com serviços
+👉 Precisa comprovar o dano e o nexo
+VALORES
+Variam conforme:
+Gravidade
+Repercussão
+Condição das partes
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+
+`
+        },
+        {
+          title:"Direito do Consumidor",
+          text:`PRODUTO COM DEFEITO: COMO AGIR?
+          O Código de Defesa do Consumidor estabelece que o fornecedor tem até 30 dias para resolver.
+Se não resolver o consumidor pode:
+Trocar
+Pedir a devolução
+Pedir o abatimento do valor
+
+NOME NEGATIVADO INDEVIDAMENTE?
+
+👉 ATENÇÃO! Casos como este gera direito à indenização automática in repsa (em muitos casos)
+Pois os tribunais têm entendimentos que basta que a negativação seja indevida é o suficiente para configurar o Dano Moral
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+
+          `
+        },
+        {
+          title:"Revisão de Aluguel",
+          text:`QUANDO PODE PEDIR REVISÃO?
+          Após 3 anos de contrato
+Quando valor estiver fora do mercado
+
+PODE DIMINUIR OU AUMENTAR?
+
+Depende da avaliação de mercado.
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+          `
+        },
+        {
+          title:"Golpes Digitais e responsabilidade Bancária",
+          text:`QUANDO O BANCO RESPONDE?
+          Falha na segurança
+Transações suspeitas não bloqueadas
+👉 Exemplo: golpe do PIX
+
+O QUE FAZER?
+Registrar ocorrência
+Comunicar o banco
+Buscar ação judicial
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+
+
+`
+        },
+        {
+          title:"Atraso da Entrega de Imóvel",
+          text:`DIREITOS DO COMPRADOR
+          Multa contratual
+Indenização
+Possível rescisão
+
+PRAZO DE TOLERÂNCIA
+👉 Normalmente 180 dias
+Após isso → construtora pode ser responsabilizada
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+
+          
+          `
+        }
+        ,
+        {
+          title:"Problemas com Plano de Saúde",
+          text:`SITUAÇÕES COMUNS
+          Negativa de cobertura
+Cancelamento indevido
+Reajustes abusivos
+
+O que Fazer?
+Pode entrar com ação com pedido de liminar
+
+Está passando por essa situação? Fale com um advogado e analise seu caso com segurança jurídica.
+
+          
+          `
+        }
+      ]
+    };
+
+    // Elementos
+    const tabs = document.querySelectorAll(".tab-button");
+    const carouselCardsContainer = document.getElementById("carousel-cards");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    let activeArea = 'direito-trabalhista';
+    let currentIndex = 0;
+
+    // Função para criar os cards do carrossel, substitui conteúdo atual
+    function createCards(areaKey) {
+      carouselCardsContainer.innerHTML = '';
+      areasData[areaKey].forEach((item, i) => {
+        const article = document.createElement('article');
+        article.className = 'card';
+        article.setAttribute('role', 'group');
+        article.setAttribute('aria-roledescription', 'slide');
+        article.setAttribute('aria-label', item.title);
+        if(i === 0) article.classList.add('active');
+
+        const h3 = document.createElement('h3');
+        h3.textContent = item.title;
+
+        const p = document.createElement('p');
+        p.textContent = item.text;
+
+        const a = document.createElement('a');
+        a.className = 'btn';
+        a.href = 'https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica';
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.tabIndex = 0;
+        a.innerText = 'Fale com um advogado';
+
+        article.appendChild(h3);
+        article.appendChild(p);
+        article.appendChild(a);
+
+        carouselCardsContainer.appendChild(article);
+      });
+      currentIndex = 0;
+    }
+
+    // Atualiza visual do card ativo
+    function showCard(index) {
+      const cards = carouselCardsContainer.querySelectorAll('article');
+      cards.forEach((card, i) => {
+        card.classList.toggle('active', i === index);
+      });
+    }
+
+    // Quando clicar em tab
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        if(tab.classList.contains('active')) return;
+        // Remove active de todas
+        tabs.forEach(t => t.classList.remove('active'));
+        // Adiciona ativo
+        tab.classList.add('active');
+        // Atualiza área ativa e cria cards
+        activeArea = tab.dataset.area;
+        createCards(activeArea);
+        showCard(0);
+      });
+    });
+
+    // Botões do carrossel
+    prevBtn.addEventListener('click', () => {
+      const cardsCount = carouselCardsContainer.children.length;
+      currentIndex = (currentIndex -1 + cardsCount) % cardsCount;
+      showCard(currentIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const cardsCount = carouselCardsContainer.children.length;
+      currentIndex = (currentIndex +1) % cardsCount;
+      showCard(currentIndex);
+    });
+
+    // Inicializa com Direito Trabalhista
+    tabs[0].classList.add('active');
+    createCards(activeArea);
+    showCard(0);
+
   });
 </script>
 
@@ -372,145 +960,22 @@
 
   <section id="areas" aria-labelledby="areas-h2">
     <h2 id="areas-h2">Áreas de Atuação</h2>
-    <div class="cards" role="list">
-      <article class="card" role="listitem" tabindex="0" aria-label="Direito do Trabalho">
-        Direito do Trabalho
-      </article>
-      <article class="card" role="listitem" tabindex="0" aria-label="Direito de Família">
-        Direito de Família
-      </article>
-      <article class="card" role="listitem" tabindex="0" aria-label="Inventário e Sucessões">
-        Inventário e Sucessões
-      </article>
-      <article class="card" role="listitem" tabindex="0" aria-label="Direito Civil">
-        Direito Civil
-      </article>
+
+    <div class="tabs" role="tablist" aria-label="Categorias de Áreas de Atuação">
+      <button class="tab-button" role="tab" aria-selected="true" aria-controls="tab-direito-trabalhista" id="tab-btn1" data-area="direito-trabalhista" tabindex="0">Direito Trabalhista</button>
+      <button class="tab-button" role="tab" aria-selected="false" aria-controls="tab-direito-familia" id="tab-btn2" data-area="direito-familia" tabindex="-1">Direito de Família</button>
+      <button class="tab-button" role="tab" aria-selected="false" aria-controls="tab-direito-sucessoes" id="tab-btn3" data-area="direito-sucessoes" tabindex="-1">Direito das Sucessões</button>
+      <button class="tab-button" role="tab" aria-selected="false" aria-controls="tab-direito-civil" id="tab-btn4" data-area="direito-civil" tabindex="-1">Direito Civil</button>
     </div>
-  </section>
 
-  <section aria-labelledby="conteudos-h2">
-    <h2 id="conteudos-h2">Conteúdos Jurídicos</h2>
-    <div class="cards" role="list">
-
-      <article class="card" role="listitem" tabindex="0" aria-label="Demissão sem justa causa">
-        <h3>Demissão sem justa causa</h3>
-        <p>
-QUAIS SÃO SEUS DIREITOS?
-
-Quando um trabalhador é demitido sem justa causa, a lei garante uma série de direitos que muitas vezes não são totalmente pagos pelo empregador.
-
-Entre os principais estão:
-• Saldo de salário
-• Aviso prévio (trabalhado ou indenizado)
-• Férias vencidas e proporcionais + 1/3
-• 13º salário proporcional
-• Saque do FGTS
-• Multa de 40% sobre o FGTS
-
-Além disso, o trabalhador pode ter direito ao seguro-desemprego.
-
-Atenção: erros no cálculo da rescisão são muito comuns. Por isso, é importante analisar o termo de rescisão antes de assinar.
-Em caso de dúvida, busque orientação jurídica.
-        </p>
-        <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Fale com um advogado</a>
-      </article>
-
-      <article class="card" role="listitem" tabindex="0" aria-label="Demissão por justa causa">
-        <h3>Demissão por justa causa</h3>
-        <p>
-É POSSÍVEL REVER?
-
-A demissão por justa causa ocorre quando o empregador entende que houve uma falta grave do trabalhador.
-
-No entanto, muitas dessas demissões são aplicadas de forma indevida.
-
-Alguns exemplos:
-• Falta de provas
-• Penalidade desproporcional
-• Ausência de advertências anteriores
-
-Se a justa causa for revertida, o trabalhador passa a ter direito a todas as verbas de uma demissão comum.
-
-Cada caso deve ser analisado individualmente.
-        </p>
-        <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Fale com um advogado</a>
-      </article>
-
-      <article class="card" role="listitem" tabindex="0" aria-label="Inventário">
-        <h3>Inventário</h3>
-        <p>
-COMO FUNCIONA O INVENTÁRIO?
-
-O inventário é o procedimento utilizado para formalizar a divisão dos bens de uma pessoa falecida.
-
-Ele pode ser feito de duas formas:
-
-Extrajudicial (cartório)
-• Quando há acordo entre os herdeiros
-• Mais rápido e menos burocrático
-
-Judicial
-• Quando há conflito ou herdeiros menores
-
-O prazo para iniciar o inventário é de 60 dias após o falecimento.
-
-O atraso pode gerar multa sobre o imposto (ITCMD).
-        </p>
-        <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Fale com um advogado</a>
-      </article>
-
-      <article class="card" role="listitem" tabindex="0" aria-label="Dano Moral">
-        <h3>Dano Moral</h3>
-        <p>
-POSSO PROCESSAR POR DANO MORAL?
-
-O dano moral ocorre quando há violação à dignidade, honra ou integridade da pessoa.
-
-Situações comuns:
-• Nome negativado indevidamente
-• Cobrança abusiva
-• Cancelamento de serviços essenciais
-• Problemas com bancos ou empresas
-
-Nem todo aborrecimento gera indenização — é necessário avaliar a gravidade do caso.
-        </p>
-        <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Fale com um advogado</a>
-      </article>
-
-      <article class="card" role="listitem" tabindex="0" aria-label="União Estável">
-        <h3>União Estável</h3>
-        <p>
-COMO FUNCIONA A PARTILHA DE BENS?
-
-Na união estável, salvo contrato em contrário, aplica-se o regime da comunhão parcial de bens.
-
-Isso significa que:
-• Tudo que foi adquirido durante a convivência deve ser dividido
-• Bens anteriores não entram na partilha
-
-Muitas pessoas acreditam que não têm direitos por não serem casadas — o que não é verdade.
-A comprovação da união pode ser feita por diversos meios (documentos, testemunhas, etc...).
-        </p>
-        <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Fale com um advogado</a>
-      </article>
-
-      <article class="card" role="listitem" tabindex="0" aria-label="Cobrança Indevida">
-        <h3>Cobrança Indevida</h3>
-        <p>
-O QUE FAZER?
-
-Se você foi cobrado indevidamente, saiba que tem direitos garantidos pelo Código de Defesa do Consumidor.
-
-Você pode:
-• Exigir a devolução do valor
-• Receber em dobro (em alguns casos)
-• Pleitear indenização por dano moral
-
-Guarde sempre comprovantes e registros da cobrança.
-        </p>
-        <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Fale com um advogado</a>
-      </article>
-
+    <div class="carousel-container" id="carousel-container">
+      <div class="carousel-cards" id="carousel-cards" role="tabpanel" aria-labelledby="tab-btn1" tabindex="0">
+        <!-- Cards serão inseridos por JS -->
+      </div>
+      <div class="carousel-controls" aria-label="Controles do carrossel">
+        <button id="prev-btn" aria-label="Slide anterior">&lt; Anterior</button>
+        <button id="next-btn" aria-label="Próximo slide">Próximo &gt;</button>
+      </div>
     </div>
   </section>
 
@@ -526,13 +991,43 @@ Guarde sempre comprovantes e registros da cobrança.
 
   <section id="sobre" aria-labelledby="sobre-h2">
     <h2 id="sobre-h2">Sobre</h2>
-    <p tabindex="0">Advogado atuante em São Paulo e Vale do Paraíba, com experiência em direito trabalhista, civil e familiar.</p>
+    <p tabindex="0">Advogado com atuação técnica e estratégica, em constante atualização, atualmente em especialização em Direito e Processo Civil e em Direito de Família e Sucessões. <br />
+    Possui experiência prática de 2 anos no Tribunal, com atuação na Vara de Família e Sucessões, o que garante domínio da dinâmica processual e das rotinas cartorárias. <br />
+  Atua com foco na solução eficiente de conflitos e na proteção dos interesses do cliente, com experiência em demandas familiares, patrimoniais, contratuais, responsabilidade civil e também na esfera trabalhista, tanto para reclamante quanto reclamada. <br />
+  Cada caso é analisado de forma individualizada, buscando a melhor estratégia jurídica para resultados concretos.
+
+Adota uma comunicação clara e acessível, oferecendo segurança jurídica e transparência na condução dos processos e na tomada de decisões.
+</p>
   </section>
 
-  <section id="contato" aria-labelledby="contato-h2">
-    <h2 id="contato-h2">Fale com um advogado</h2>
-    <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0">Falar com um Advogado</a>
-  </section>
+ <section id="contato" aria-labelledby="contato-h2">
+  <h2 id="contato-h2">Contato</h2>
+  <h3>Acesse nossas Redes Sociais</h3>
+
+  <a href="https://www.instagram.com/adv.leandromantovaneli?igsh=MXFzbzg2azI0d2FrbA%3D%3D&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram" tabindex="0" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#000;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#E4405F" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M7 2C4.23858 2 2 4.23858 2 7V17C2 19.7614 4.23858 22 7 22H17C19.7614 22 22 19.7614 22 17V7C22 4.23858 19.7614 2 17 2H7ZM17 20C15.2051 20 13.7229 19.0136 12.9375 17.5005H11.0625C10.2771 19.0136 8.79493 20 7 20C5.34315 20 4 18.6569 4 17V7C4 5.34315 5.34315 4 7 4H17C18.6569 4 20 5.34315 20 7V17C20 18.6569 18.6569 20 17 20ZM12 7.5C9.51472 7.5 7.5 9.51472 7.5 12C7.5 14.4853 9.51472 16.5 12 16.5C14.4853 16.5 16.5 14.4853 16.5 12C16.5 9.51472 14.4853 7.5 12 7.5ZM12 15C10.6193 15 9.5 13.8807 9.5 12.5C9.5 11.1193 10.6193 10 12 10C13.3807 10 14.5 11.1193 14.5 12.5C14.5 13.8807 13.3807 15 12 15ZM17.8 6.2C17.5605 6.2 17.3605 6.4 17.3605 6.64C17.3605 6.87952 17.5605 7.0795 17.8 7.0795C18.0395 7.0795 18.2395 6.87952 18.2395 6.64C18.2395 6.4 18.0395 6.2 17.8 6.2Z" />
+    </svg>
+    Instagram
+  </a>
+
+  <a href="https://www.linkedin.com/in/leandro-mantovaneli-615ba31b4?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener" aria-label="LinkedIn" tabindex="0" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#0A66C2; margin-left:20px;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0A66C2" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M4.983 3.5C3.343 3.5 2 4.843 2 6.483c0 1.641 1.343 2.984 2.983 2.984S7.966 8.124 7.966 6.483C7.966 4.843 6.62 3.5 4.983 3.5zM2 21.5h6V10.812H2V21.5zm7.5-10.813h5.625v1.406h.08c.782-1.488 2.69-3.062 5.53-3.062 5.914 0 7 3.89 7 8.933V21.5H19v-7.969c0-1.909-.035-4.366-2.656-4.366-2.656 0-3.062 2.07-3.062 4.209V21.5h-6v-10.813z"/>
+    </svg>
+    LinkedIn
+  </a>
+
+  <div style="margin: 30px 0;">
+    <img src="cartaodevisitas.PNG" alt="Imagem ilustrativa das redes sociais" style="max-width:100%; height:auto; border-radius:8px;" />
+  </div>
+
+  <div>
+    <a class="btn" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" rel="noopener" tabindex="0" style="white-space: nowrap;">Falar com um Advogado</a>
+  </div>
+</section>
+
+
 </main>
 
 <footer>
