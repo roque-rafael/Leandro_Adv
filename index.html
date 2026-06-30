@@ -45,56 +45,255 @@
   "telephone": "+5512982750444",
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
     "opens": "09:00",
     "closes": "18:00"
-  }
+  },
+  "areaServed": [
+    {"@type": "AdministrativeArea", "name": "São Paulo"},
+    {"@type": "AdministrativeArea", "name": "Vale do Paraíba"}
+  ],
+  "sameAs": [
+    "https://www.instagram.com/adv.leandromantovaneli",
+    "https://www.linkedin.com/in/leandro-mantovaneli-615ba31b4"
+  ]
 }
 </script>
 
 <style>
-/* Todo o CSS original mantido e otimizado */
-:root{--bg:#0c0e14;--bg2:#10121a;--gold:#c9a84c;--gold2:#e8c878;--white:#f4f1eb;--muted:#8a8e9a;--border:rgba(201,168,76,.15);--red:#c94c4c;--green:#4caf7a;}
+:root{
+  --bg:#0c0e14;
+  --bg2:#10121a;
+  --bg3:#14172200;
+  --gold:#c9a84c;
+  --gold2:#e8c878;
+  --gold-dim:#8a6d2f;
+  --white:#f4f1eb;
+  --muted:#8a8e9a;
+  --border:rgba(201,168,76,.15);
+  --red:#c94c4c;
+  --green:#4caf7a;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;line-height:1.65}
+
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,14,20,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--white);text-decoration:none;font-weight:700}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;letter-spacing:.03em;color:var(--white);text-decoration:none;line-height:1.2}
 .nav-logo span{color:var(--gold)}
 .nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{font-size:.85rem;font-weight:600;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a{font-size:.85rem;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:.04em;transition:color .2s}
 .nav-links a:hover{color:var(--gold)}
-.btn-cta{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0c0e14;font-weight:700;font-size:.85rem;padding:10px 22px;border-radius:6px;text-decoration:none}
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 5% 70px}
-.hero-tag{background:rgba(201,168,76,.09);border:1px solid var(--border);border-radius:50px;padding:7px 18px;font-size:.75rem;font-weight:700;color:var(--gold);margin-bottom:32px;text-transform:uppercase}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,7vw,4.6rem);line-height:1.08;margin-bottom:24px;font-weight:900}
+.btn-cta{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0c0e14;font-weight:700;font-size:.85rem;padding:10px 22px;border-radius:6px;text-decoration:none;white-space:nowrap;letter-spacing:.03em}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 5% 70px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 0%,rgba(201,168,76,.12) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(transparent,var(--bg));pointer-events:none}
+.hero-tag{display:inline-flex;align-items:center;gap:9px;background:rgba(201,168,76,.09);border:1px solid var(--border);border-radius:50px;padding:7px 18px;font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:32px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:p 2.4s infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,7vw,4.6rem);line-height:1.08;margin-bottom:24px;font-weight:900;max-width:800px}
 .hero h1 em{font-style:normal;color:var(--gold)}
-.hero-sub{font-size:1rem;color:var(--muted);max-width:540px;margin:0 auto 38px}
-.btn-hero{display:inline-flex;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0c0e14;font-weight:800;font-size:.95rem;padding:16px 38px;border-radius:8px;text-decoration:none}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:540px;margin:0 auto 38px;line-height:1.8}
+.hero-sub strong{color:var(--white)}
+.btn-hero{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0c0e14;font-weight:800;font-size:.95rem;padding:16px 38px;border-radius:8px;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;box-shadow:0 0 45px rgba(201,168,76,.25)}
+.hero-g{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:18px;font-size:.83rem;color:var(--muted);flex-wrap:wrap}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:52px;max-width:680px;width:100%;position:relative;z-index:1}
+.sc{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:20px 14px;text-align:center}
+.sn{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;line-height:1;color:var(--gold)}
+.sl{font-size:.68rem;color:var(--muted);font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-top:5px}
+
+/* SECTIONS */
 section{padding:80px 5%}
 .sw{max-width:880px;margin:0 auto}
-.stag{font-size:.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
-.stit{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:12px;font-weight:700}
-.ssub{color:var(--muted);font-size:.93rem}
-.ct{text-align:center}
-.gold-line{width:52px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);margin:14px auto 18px}
+.stag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.stit{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:.01em;margin-bottom:12px;font-weight:700}
+.ssub{color:var(--muted);font-size:.93rem;line-height:1.8}
+.ct{text-align:center}.ct .ssub{margin:0 auto;max-width:520px}
+
+/* AREAS */
 .fg{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:44px}
-.fc{background:rgba(255,255,255,.035);border:1px solid var(--border);border-radius:14px;padding:26px;display:flex;gap:18px}
-.fi{width:50px;height:50px;background:rgba(201,168,76,.1);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
-.fc h3{font-size:.95rem;color:var(--gold);margin-bottom:6px}
-.fc p{font-size:.84rem;color:var(--muted)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:44px}
-.contact-card{background:rgba(255,255,255,.035);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;gap:14px}
+.fc{background:rgba(255,255,255,.035);border:1px solid var(--border);border-radius:14px;padding:26px;display:flex;gap:18px;align-items:flex-start;transition:border-color .25s,background .25s}
+.fc:hover{border-color:rgba(201,168,76,.35);background:rgba(201,168,76,.04)}
+.fi{width:50px;height:50px;border-radius:10px;background:rgba(201,168,76,.1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.fc h3{font-size:.95rem;font-weight:700;margin-bottom:6px;color:var(--gold)}
+.fc p{font-size:.84rem;color:var(--muted);line-height:1.65}
+
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:12px;margin-top:44px}
+.sk{background:rgba(255,255,255,.035);border:1px solid var(--border);border-radius:14px;padding:22px 26px;display:flex;gap:20px;align-items:center}
+.snum{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--gold);line-height:1;min-width:42px;font-weight:700}
+.sk h4{font-size:.95rem;font-weight:700;margin-bottom:4px;color:var(--white)}
+.sk p{font-size:.84rem;color:var(--muted)}
+
+/* SOBRE */
+.sobre-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:52px}
+.sobre-img{border-radius:18px;overflow:hidden;border:1px solid var(--border);aspect-ratio:4/5;position:relative}
+.sobre-img img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.sobre-img::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(12,14,20,.8))}
+.sobre-text .stit{text-align:left}
+.sobre-text .stag{text-align:left}
+.sobre-text .ssub{max-width:100%;margin-top:16px}
+.diferenciais{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
+.dif{background:rgba(201,168,76,.07);border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;align-items:center;gap:10px;font-size:.85rem;font-weight:600;color:var(--white)}
+.dif-ico{font-size:1.1rem;flex-shrink:0}
+
+/* DIFERENCIAIS SECTION */
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.cc{border-radius:14px;padding:26px;border:1.5px solid}
+.cc.bad{background:rgba(201,76,76,.04);border-color:rgba(201,76,76,.2)}
+.cc.good{background:rgba(76,175,122,.04);border-color:rgba(76,175,122,.2)}
+.ch{display:flex;align-items:center;gap:13px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.ci{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:900;flex-shrink:0}
+.ci.bad{background:rgba(201,76,76,.2);color:var(--red)}.ci.good{background:rgba(76,175,122,.2);color:var(--green)}
+.ch h3{font-size:.95rem;font-weight:700}
+.cl{list-style:none;display:flex;flex-direction:column;gap:10px}
+.cl li{display:flex;align-items:flex-start;gap:10px;font-size:.84rem;color:var(--muted);line-height:1.55}
+.ico{flex-shrink:0;width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:900;margin-top:1px}
+.ico.bad{background:rgba(201,76,76,.2);color:var(--red)}.ico.good{background:rgba(76,175,122,.2);color:var(--green)}
+
+/* FAQ */
+.faq-list{margin-top:44px;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:rgba(255,255,255,.035);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:20px 24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.faq-q span{font-size:.9rem;font-weight:600;color:var(--white)}
+.faq-ico{width:28px;height:28px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;font-weight:700;flex-shrink:0;line-height:1}
+.faq-body{display:none;padding:0 24px 20px}
+.faq-body p{font-size:.87rem;color:var(--muted);line-height:1.8}
+
+/* GARANTIA */
+.gc{background:rgba(76,175,122,.04);border:1.5px solid rgba(76,175,122,.2);border-radius:18px;padding:44px 34px;text-align:center;max-width:620px;margin:44px auto 0}
+.gi{width:68px;height:68px;border-radius:50%;background:rgba(76,175,122,.1);border:2px solid rgba(76,175,122,.3);display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin:0 auto 16px}
+.gb{display:inline-block;background:linear-gradient(135deg,var(--green),#3a8f60);color:#fff;font-size:.7rem;font-weight:800;padding:5px 14px;border-radius:50px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.gc h3{font-family:'Playfair Display',serif;font-size:2rem;letter-spacing:.01em;margin-bottom:14px;font-weight:700}
+.gc h3 em{font-style:normal;color:var(--green)}
+.gc p{color:var(--muted);font-size:.9rem;line-height:1.8;margin-bottom:22px}
+.gl{list-style:none;display:flex;flex-direction:column;gap:10px;text-align:left;max-width:280px;margin:0 auto}
+.gl li{display:flex;align-items:center;gap:10px;font-size:.88rem}
+.gl li::before{content:'✓';color:var(--green);font-weight:900}
+
+/* CTA final */
+.cf{background:linear-gradient(160deg,#0d1220,#080a10);padding:80px 5%;text-align:center;border-top:1px solid var(--border)}
+.cf h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);letter-spacing:.01em;margin-bottom:14px;font-weight:700}
+.cf p{color:var(--muted);font-size:.95rem;margin-bottom:34px}
+
+/* MAPA / CONTATO */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:44px;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:18px}
+.contact-card{background:rgba(255,255,255,.035);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;gap:14px;align-items:flex-start}
+.contact-card .fi{width:42px;height:42px;font-size:1.2rem}
+.contact-card h4{font-size:.88rem;font-weight:700;margin-bottom:4px;color:var(--gold)}
+.contact-card p,.contact-card a{font-size:.84rem;color:var(--muted);text-decoration:none;line-height:1.6}
+.contact-card a:hover{color:var(--gold)}
 .map-wrap{border-radius:14px;overflow:hidden;border:1px solid var(--border);height:320px}
 .map-wrap iframe{width:100%;height:100%;border:none;filter:invert(1) hue-rotate(180deg) brightness(.85) saturate(.8)}
-footer{background:#06080d;padding:24px 5%;text-align:center;border-top:1px solid rgba(255,255,255,.05)}
-footer p{font-size:.78rem;color:var(--muted);margin-top:8px}
+.social-links{display:flex;gap:10px;margin-top:6px}
+.social-links a{display:inline-flex;align-items:center;gap:7px;background:rgba(201,168,76,.09);border:1px solid var(--border);border-radius:6px;padding:7px 14px;font-size:.8rem;font-weight:600;color:var(--gold);text-decoration:none;transition:background .2s}
+.social-links a:hover{background:rgba(201,168,76,.18)}
+
+/* FOOTER */
+footer{background:#06080d;padding:24px 5%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);flex-wrap:wrap;gap:10px}
+.fl{font-family:'Playfair Display',serif;font-size:1.2rem;letter-spacing:.03em;color:var(--white);text-decoration:none;font-weight:700}
+.fl span{color:var(--gold)}
+footer p{font-size:.78rem;color:var(--muted)}
+
+/* WA FLOAT */
+.waf{position:fixed;bottom:24px;right:24px;z-index:998;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,.4);text-decoration:none;transition:transform .2s}
+.waf:hover{transform:scale(1.08)}
+
+/* DECORATIVE LINES */
+.gold-line{width:52px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:2px;margin:14px 0 18px}
+.ct .gold-line{margin:14px auto 18px}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+.reveal.show{opacity:1;transform:translateY(0)}
+
+/* ============================================
+   RESPONSIVO — MOBILE FIRST
+   ============================================ */
+@media(max-width:900px){
+  .sobre-wrap{grid-template-columns:1fr}
+  .sobre-img{aspect-ratio:16/9;max-height:320px}
+  .contact-grid{grid-template-columns:1fr}
+}
 @media(max-width:768px){
   nav{padding:0 4%;height:60px}
   .nav-links{display:none}
-  .hero{padding:90px 4% 60px}
-  .hero h1{font-size:clamp(1.9rem,8vw,2.8rem)}
-  .fg,.contact-grid{grid-template-columns:1fr}
+  .btn-cta{font-size:.78rem;padding:9px 16px}
+  .nav-logo{font-size:1.15rem}
+  .hero{padding:90px 4% 60px;min-height:auto}
+  .hero-tag{font-size:.7rem;padding:6px 14px;margin-bottom:22px}
+  .hero h1{font-size:clamp(1.9rem,8vw,2.8rem);line-height:1.12;margin-bottom:18px}
+  .hero h1 br{display:none}
+  .hero-sub{font-size:.9rem;margin-bottom:28px}
+  .btn-hero{font-size:.85rem;padding:14px 26px;letter-spacing:.03em;text-align:center;justify-content:center;width:100%;max-width:340px}
+  .hero-g{gap:10px;font-size:.78rem;flex-direction:column;align-items:center}
+  .hero-g span:nth-child(even){display:none}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:10px;margin-top:36px}
+  .sc{padding:14px 10px}
+  .sn{font-size:1.4rem}
+  .sl{font-size:.62rem}
+  section{padding:56px 4%}
+  .sw{max-width:100%}
+  .stit{font-size:clamp(1.5rem,6vw,2.2rem)}
+  .ssub{font-size:.88rem}
+  .fg{grid-template-columns:1fr;gap:12px}
+  .fc{padding:18px;gap:14px}
+  .fi{width:42px;height:42px;font-size:1.2rem;flex-shrink:0}
+  .fc h3{font-size:.9rem}
+  .fc p{font-size:.82rem}
+  .steps{gap:10px}
+  .sk{padding:16px 18px;gap:14px}
+  .snum{font-size:1.9rem;min-width:34px}
+  .sk h4{font-size:.9rem}
+  .sk p{font-size:.82rem}
+  .sobre-wrap{grid-template-columns:1fr;gap:28px}
+  .sobre-img{aspect-ratio:16/9;max-height:280px}
+  .sobre-text .stit{font-size:clamp(1.5rem,6vw,2rem)}
+  .diferenciais{grid-template-columns:1fr;gap:8px}
+  .dif{font-size:.82rem;padding:12px}
+  .cg{grid-template-columns:1fr;gap:12px}
+  .cc{padding:20px}
+  .cl li{font-size:.82rem}
+  .gc{padding:30px 20px}
+  .gc h3{font-size:1.6rem}
+  .gc p{font-size:.86rem}
+  .faq-list{gap:8px}
+  .faq-q{padding:16px 18px}
+  .faq-q span{font-size:.86rem}
+  .faq-body{padding:0 18px 16px}
+  .faq-body p{font-size:.84rem}
+  .contact-grid{grid-template-columns:1fr;gap:20px}
+  .contact-card{padding:16px;gap:12px}
+  .contact-card .fi{width:38px;height:38px;font-size:1rem}
+  .contact-card h4{font-size:.84rem}
+  .contact-card p,.contact-card a{font-size:.8rem}
+  .social-links{flex-wrap:wrap;gap:8px}
+  .social-links a{font-size:.78rem;padding:6px 12px}
+  .map-wrap{height:240px}
+  .cf{padding:56px 4%}
+  .cf h2{font-size:clamp(1.6rem,6vw,2.2rem)}
+  .cf p{font-size:.88rem}
+  footer{flex-direction:column;text-align:center;gap:6px;padding:20px 4%}
+  footer p{font-size:.75rem}
+  .waf{width:50px;height:50px;bottom:18px;right:18px}
+  .waf svg{width:24px;height:24px}
+}
+@media(max-width:420px){
+  nav{padding:0 3%}
+  .nav-logo{font-size:1rem}
+  .btn-cta{font-size:.72rem;padding:8px 12px}
+  .hero{padding:80px 3% 50px}
+  .hero h1{font-size:clamp(1.65rem,9vw,2.2rem)}
+  section{padding:48px 3%}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .sn{font-size:1.2rem}
+  .btn-hero{font-size:.8rem;padding:13px 20px}
+  .faq-q span{font-size:.82rem}
+  .gc{padding:24px 16px}
 }
 </style>
 </head>
@@ -107,68 +306,305 @@ footer p{font-size:.78rem;color:var(--muted);margin-top:8px}
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
-  <a class="btn-cta" href="https://wa.me/5512982750444" target="_blank">Fale com um Advogado</a>
+  <a class="btn-cta" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank">Fale com um Advogado</a>
 </nav>
 
 <section class="hero">
-  <div class="hero-tag">São Paulo e Vale do Paraíba</div>
-  <h1>Teve seus direitos<br>violados? Saiba como<br>agir e <em>recuperar</em> o que é seu.</h1>
-  <p class="hero-sub">Atendimento jurídico com <strong>segurança e transparência</strong> em direito trabalhista, família, sucessões e civil.</p>
-  <a href="https://wa.me/5512982750444" target="_blank" class="btn-hero">⚖️ FALAR COM UM ADVOGADO →</a>
+  <div class="hero-tag reveal"><span class="dot"></span> São Paulo e Vale do Paraíba</div>
+  <h1 class="reveal">Teve seus direitos<br>violados? Saiba como<br>agir e <em>recuperar</em> o que é seu.</h1>
+  <p class="hero-sub reveal">Atendimento jurídico com <strong>segurança e transparência</strong> em direito trabalhista, família, sucessões e civil.</p>
+  <a href="https://wa.me/5512982750444?text=Olá, gostaria de falar com um advogado" target="_blank" class="btn-hero reveal">⚖️ FALAR COM UM ADVOGADO →</a>
+  <div class="hero-g reveal">
+    <span>✅ Consulta inicial</span>
+    <span>•</span>
+    <span>🛡️ Sigilo garantido</span>
+    <span>•</span>
+    <span>📍 Atendimento presencial e online</span>
+  </div>
+  <div class="hero-stats reveal">
+    <div class="sc"><div class="sn">4</div><div class="sl">Áreas de Atuação</div></div>
+    <div class="sc"><div class="sn">100%</div><div class="sl">Dedicação ao caso</div></div>
+    <div class="sc"><div class="sn">OAB</div><div class="sl">Registro ativo</div></div>
+    <div class="sc"><div class="sn">24h</div><div class="sl">Atendimento WA</div></div>
+  </div>
 </section>
 
 <section style="background:var(--bg2)" id="areas">
   <div class="sw">
-    <div class="ct">
+    <div class="ct reveal">
       <div class="stag">Áreas de Atuação</div>
       <h2 class="stit">Especialidades Jurídicas</h2>
       <div class="gold-line"></div>
+      <p class="ssub">Atuação técnica e estratégica para proteger seus interesses em diferentes esferas do direito.</p>
     </div>
     <div class="fg">
-      <div class="fc"><div class="fi">⚖️</div><div><h3>Direito Trabalhista</h3><p>Defesa dos seus direitos trabalhistas, rescisões e horas extras.</p></div></div>
-      <div class="fc"><div class="fi">👨‍👩‍👧</div><div><h3>Direito de Família</h3><p>Divórcio, guarda, pensão alimentícia e união estável.</p></div></div>
-      <div class="fc"><div class="fi">📜</div><div><h3>Direito das Sucessões</h3><p>Inventário, herança, testamento e partilha de bens.</p></div></div>
-      <div class="fc"><div class="fi">🏛️</div><div><h3>Direito Civil</h3><p>Contratos, responsabilidade civil e indenizações.</p></div></div>
+      <div class="fc reveal">
+        <div class="fi">⚖️</div>
+        <div>
+          <h3>Direito Trabalhista</h3>
+          <p>Defesa dos seus direitos trabalhistas: reclamações, rescisões, horas extras, adicionais, FGTS, assédio moral e muito mais — tanto para trabalhador quanto para empresa.</p>
+        </div>
+      </div>
+      <div class="fc reveal">
+        <div class="fi">👨‍👩‍👧</div>
+        <div>
+          <h3>Direito de Família</h3>
+          <p>Divórcio, guarda, pensão alimentícia, reconhecimento de paternidade, união estável e todas as questões que envolvem relações familiares com sensibilidade e eficiência.</p>
+        </div>
+      </div>
+      <div class="fc reveal">
+        <div class="fi">📜</div>
+        <div>
+          <h3>Direito das Sucessões</h3>
+          <p>Inventário, herança, testamento e partilha de bens. Orientação completa para a família em um momento delicado, com agilidade e segurança jurídica.</p>
+        </div>
+      </div>
+      <div class="fc reveal">
+        <div class="fi">🏛️</div>
+        <div>
+          <h3>Direito Civil</h3>
+          <p>Contratos, responsabilidade civil, indenizações, cobranças e demandas patrimoniais. Proteção dos seus interesses com estratégia jurídica sólida.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="sobre">
-  <div class="sw ct">
-    <div class="stag">Sobre</div>
-    <h2 class="stit">Dr. Leandro Mantovaneli</h2>
-    <div class="gold-line"></div>
-    <p class="ssub">Advogado com atuação técnica e estratégica. Adota uma comunicação clara e acessível, oferecendo segurança jurídica e transparência na condução dos processos.</p>
+<section id="como-funciona">
+  <div class="sw">
+    <div class="ct reveal">
+      <div class="stag">Como Funciona</div>
+      <h2 class="stit">Atendimento em 4 etapas</h2>
+      <div class="gold-line"></div>
+      <p class="ssub">Processo claro, transparente e sem burocracia desnecessária.</p>
+    </div>
+    <div class="steps">
+      <div class="sk reveal"><div class="snum">01</div><div><h4>Entre em contato</h4><p>Fale conosco pelo WhatsApp ou pelas redes sociais para agendar seu atendimento.</p></div></div>
+      <div class="sk reveal"><div class="snum">02</div><div><h4>Consulta inicial</h4><p>Apresente seu caso com total sigilo. Dr. Leandro analisa os detalhes com atenção.</p></div></div>
+      <div class="sk reveal"><div class="snum">03</div><div><h4>Estratégia jurídica</h4><p>Cada caso é analisado individualmente para definir a melhor estratégia de defesa.</p></div></div>
+      <div class="sk reveal"><div class="snum">04</div><div><h4>Atuação e acompanhamento</h4><p>Representação completa com comunicação clara em todas as fases do processo.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg2)" id="sobre">
+  <div class="sw" style="max-width:960px">
+    <div class="sobre-wrap">
+      <div class="sobre-img reveal">
+        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80" alt="Dr. Leandro Mantovaneli — Advogado Especialista em Direito Civil e de Família em São José dos Campos">
+      </div>
+      <div class="sobre-text reveal">
+        <div class="stag">Sobre</div>
+        <h2 class="stit">Dr. Leandro<br>Mantovaneli</h2>
+        <div class="gold-line"></div>
+        <p class="ssub">Advogado com atuação técnica e estratégica, em constante atualização — atualmente em especialização em Direito e Processo Civil e em Direito de Família e Sucessões.</p>
+        <p class="ssub" style="margin-top:14px">Possui experiência prática de anos no Tribunal, com atuação na Vara de Família e Sucessões, o que garante domínio da dinâmica processual e das rotinas cartorárias. Cada caso é analisado de forma individualizada, buscando a melhor estratégia jurídica para resultados concretos.</p>
+        <p class="ssub" style="margin-top:14px">Adota uma comunicação clara e acessível, oferecendo segurança jurídica e transparência na condução dos processos e na tomada de decisões.</p>
+        <div class="diferenciais" style="margin-top:26px">
+          <div class="dif reveal"><span class="dif-ico">🤝</span> Atendimento humanizado</div>
+          <div class="dif reveal"><span class="dif-ico">🔍</span> Transparência total</div>
+          <div class="dif reveal"><span class="dif-ico">⚡</span> Agilidade processual</div>
+          <div class="dif reveal"><span class="dif-ico">📚</span> Experiência jurídica</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sw">
+    <div class="ct reveal">
+      <div class="stag">Diferenciais</div>
+      <h2 class="stit">Por que escolher o Dr. Leandro Mantovaneli?</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="cg">
+      <div class="cc bad reveal">
+        <div class="ch"><div class="ci bad">✕</div><h3>Sem assessoria jurídica</h3></div>
+        <ul class="cl">
+          <li><span class="ico bad">✕</span>Direitos perdidos por desconhecimento</li>
+          <li><span class="ico bad">✕</span>Prazos perdidos sem orientação</li>
+          <li><span class="ico bad">✕</span>Acordos desvantajosos por falta de defesa</li>
+          <li><span class="ico bad">✕</span>Processos lentos sem estratégia</li>
+          <li><span class="ico bad">✕</span>Insegurança e ansiedade sem suporte</li>
+        </ul>
+      </div>
+      <div class="cc good reveal">
+        <div class="ch"><div class="ci good">✓</div><h3>Com o Dr. Leandro Mantovaneli</h3></div>
+        <ul class="cl">
+          <li><span class="ico good">✓</span>Direitos identificados e protegidos</li>
+          <li><span class="ico good">✓</span>Prazos monitorados e cumpridos</li>
+          <li><span class="ico good">✓</span>Negociação estratégica em seu favor</li>
+          <li><span class="ico good">✓</span>Análise individualizada do seu caso</li>
+          <li><span class="ico good">✓</span>Comunicação clara e suporte contínuo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg2)">
+  <div class="sw">
+    <div class="gc reveal">
+      <div class="gi">🤝</div>
+      <div class="gb">✓ Sigilo e Ética Garantidos</div>
+      <h3>Seu caso, <em>nossa prioridade</em></h3>
+      <p>Todo atendimento é tratado com absoluto sigilo profissional e ética, conforme o Código de Ética e Disciplina da OAB. Você recebe orientação clara, honesta e sem promessas vazias.</p>
+      <ul class="gl">
+        <li>Sigilo absoluto garantido</li>
+        <li>Comunicação clara em todo o processo</li>
+        <li>Análise individual de cada caso</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="sw">
+    <div class="ct reveal">
+      <div class="stag">Dúvidas</div>
+      <h2 class="stit">Perguntas Frequentes</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q"><span>O atendimento é presencial ou online?</span><div class="faq-ico">+</div></button>
+        <div class="faq-body"><p>O escritório atende presencialmente em São José dos Campos (Parque Res. Aquarius) e em toda a região do Vale do Paraíba. Também realizamos atendimentos online para clientes de São Paulo e outras cidades.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q"><span>Como funciona a primeira consulta?</span><div class="faq-ico">+</div></button>
+        <div class="faq-body"><p>A primeira consulta é o momento de apresentar seu caso em detalhes. O Dr. Leandro ouvirá tudo com atenção, analisará a situação e indicará os caminhos jurídicos disponíveis de forma clara e objetiva.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q"><span>Quais áreas do direito são atendidas?</span><div class="faq-ico">+</div></button>
+        <div class="faq-body"><p>Atuamos em Direito Trabalhista (para trabalhadores e empresas), Direito de Família (divórcio, guarda, pensão), Direito das Sucessões (inventário, herança, testamento) e Direito Civil (contratos, indenizações, responsabilidade civil).</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q"><span>Quanto tempo demora um processo?</span><div class="faq-ico">+</div></button>
+        <div class="faq-body"><p>O tempo varia conforme a complexidade do caso, a comarca e a via escolhida (judicial ou extrajudicial). Em cada consulta, oferecemos uma estimativa realista, sempre buscando a solução mais ágil possível.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q"><span>Posso confiar no sigilo das informações?</span><div class="faq-ico">+</div></button>
+        <div class="faq-body"><p>Sim. O sigilo profissional é um dever ético e legal do advogado, previsto no Código de Ética da OAB. Todas as informações compartilhadas são absolutamente confidenciais.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q"><span>Como entrar em contato?</span><div class="faq-ico">+</div></button>
+        <div class="faq-body"><p>Pelo WhatsApp (12) 98275-0444, pelo Instagram @adv.leandromantovaneli ou pelo LinkedIn. Respondemos com agilidade e agende seu atendimento de forma rápida e simples.</p></div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section style="background:var(--bg2)" id="contato">
-  <div class="sw ct">
-    <div class="stag">Contato</div>
-    <h2 class="stit">Fale Conosco</h2>
-    <div class="gold-line"></div>
-    <div class="contact-grid" style="text-align:left;">
-      <div>
-        <div class="contact-card" style="margin-bottom:14px">
+  <div class="sw" style="max-width:960px">
+    <div class="ct reveal">
+      <div class="stag">Contato</div>
+      <h2 class="stit">Fale Conosco</h2>
+      <div class="gold-line"></div>
+      <p class="ssub">Tire suas dúvidas e agende sua consulta com facilidade.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-card reveal">
           <div class="fi">📱</div>
-          <div><h4 style="color:var(--gold)">WhatsApp</h4><a href="https://wa.me/5512982750444" style="color:var(--muted);text-decoration:none">(12) 98275-0444</a></div>
+          <div>
+            <h4>WhatsApp</h4>
+            <a href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank">(12) 98275-0444</a>
+            <p>Resposta ágil em horário comercial</p>
+          </div>
         </div>
-        <div class="contact-card">
+        <div class="contact-card reveal">
           <div class="fi">📍</div>
-          <div><h4 style="color:var(--gold)">Endereço</h4><p style="color:var(--muted);font-size:0.85rem">R. Dr. Orlando Feirabend Filho, 230<br>Parque Res. Aquarius, São José dos Campos – SP</p></div>
+          <div>
+            <h4>Endereço</h4>
+            <p>R. Dr. Orlando Feirabend Filho, 230<br>Parque Res. Aquarius<br>São José dos Campos – SP, 12246-190</p>
+          </div>
+        </div>
+        <div class="contact-card reveal">
+          <div class="fi">🌐</div>
+          <div>
+            <h4>Redes Sociais</h4>
+            <div class="social-links">
+              <a href="https://www.instagram.com/adv.leandromantovaneli" target="_blank">📷 Instagram</a>
+              <a href="https://www.linkedin.com/in/leandro-mantovaneli-615ba31b4" target="_blank">💼 LinkedIn</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-card reveal">
+          <div class="fi">🗺️</div>
+          <div>
+            <h4>Área de Atendimento</h4>
+            <p>São Paulo e Vale do Paraíba<br>Atendimento online para todo o Brasil</p>
+          </div>
         </div>
       </div>
-      <div class="map-wrap">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.4398184511516!2d-45.900406!3d-23.2185249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cc4a004eb65b93%3A0xa61fc1df551f33f9!2sR.%20Dr.%20Orlando%20Feirabend%20Filho%2C%20230%20-%20Parque%20Residencial%20Aquarius%2C%20S%C3%A3o%20Jos%C3%A9%20dos%20Campos%20-%20SP%2C%2012246-190!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+      <div class="map-wrap reveal">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3666.7214695027584!2d-45.88772392463286!3d-23.223833248882064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cc4a923b8fefd9%3A0x6bda1ac1a2b25754!2sR.+Dr.+Orlando+Feirabend+Filho%2C+230+-+Parque+Res.+Aquarius%2C+S%C3%A3o+Jos%C3%A9+dos+Campos+-+SP%2C+12246-190!5e0!3m2!1spt-BR!2sbr!4v1716000000000!5m2!1spt-BR!2sbr" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização do escritório Advocacia Mantovaneli em São José dos Campos"></iframe>
       </div>
     </div>
   </div>
 </section>
 
+<section class="cf reveal">
+  <h2>Pronto Para Defender<br>os Seus Direitos?</h2>
+  <p>Atendimento humanizado, transparente e estratégico. Entre em contato agora.</p>
+  <a href="https://wa.me/5512982750444?text=Olá, gostaria de falar com um advogado" target="_blank" class="btn-hero">⚖️ FALAR COM UM ADVOGADO →</a>
+</section>
+
 <footer>
-  <a class="nav-logo" href="#">Dr. Leandro <span>Mantovaneli</span></a>
+  <a class="fl" href="#">Dr. Leandro <span>Mantovaneli</span></a>
   <p>© 2026 Advocacia Mantovaneli. Todos os direitos reservados.</p>
+  <p>São Paulo e Vale do Paraíba</p>
 </footer>
 
+<a class="waf" href="https://wa.me/5512982750444?text=Olá, vim pelo site e preciso de orientação jurídica" target="_blank" aria-label="Fale pelo WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// FAQ
+var items = document.querySelectorAll('.faq-item');
+for (var i = 0; i < items.length; i++) {
+  (function(item) {
+    var btn  = item.querySelector('.faq-q');
+    var body = item.querySelector('.faq-body');
+    var ico  = item.querySelector('.faq-ico');
+    btn.onclick = function() {
+      var aberto = body.style.display === 'block';
+      for (var j = 0; j < items.length; j++) {
+        items[j].querySelector('.faq-body').style.display = 'none';
+        items[j].querySelector('.faq-ico').textContent = '+';
+      }
+      if (!aberto) {
+        body.style.display = 'block';
+        ico.textContent = '×';
+      }
+    };
+  })(items[i]);
+}
+
+// SCROLL REVEAL
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  for (var i = 0; i < els.length; i++) {
+    var rect = els[i].getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.6) els[i].classList.add('show');
+  }
+  function check() {
+    var wh = window.innerHeight;
+    for (var i = 0; i < els.length; i++) {
+      if (els[i].classList.contains('show')) continue;
+      var rect = els[i].getBoundingClientRect();
+      if (rect.top < wh - 70 && rect.bottom > 0) els[i].classList.add('show');
+    }
+  }
+  window.addEventListener('scroll', check, {passive: true});
+  window.addEventListener('resize', check, {passive: true});
+  setTimeout(function() {
+    for (var i = 0; i < els.length; i++) els[i].classList.add('show');
+  }, 9000);
+})();
+</script>
 </body>
 </html>
